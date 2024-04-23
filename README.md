@@ -8,3 +8,9 @@
 + Similarly, the second occurrence of guest denotes the password associated with the provided username. These credentials are essential for verifying the identity of the client attempting to connect to the server.
 + Finally, `localhost:5672` specifies the address and port of the AMQP server which is run on a local machine.
 + Put it all together `guest:guest@localhost:5672` instructs the application to connect to the AMQP server using the specified username and password via port 5672 on the local machine.
+
+## Slow Subscriber
+![alt text](image.png)
++ After running `cargo run` on publisher around 10 times we can see that theres a spike in queued messages, ranging around 50-70 when i ran 10 times consecutively, this indicates a bottleneck in message processing.
++ This bottleneck occurs when the subscriber experiences delays in handling incoming messages (caused by changing the subscriber code so that `subscriber delay 1 second for every process`), leading to an accumulation of messages in the queue. 
++ Regarding the total number of queues, the number may vary depending on the system configuration and workload in this case workload previously mentioned.
