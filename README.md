@@ -14,3 +14,13 @@
 + After running `cargo run` on publisher around 10 times we can see that theres a spike in queued messages, ranging around 50-70 when i ran 10 times consecutively, this indicates a bottleneck in message processing.
 + This bottleneck occurs when the subscriber experiences delays in handling incoming messages (caused by changing the subscriber code so that `subscriber delay 1 second for every process`), leading to an accumulation of messages in the queue. 
 + Regarding the total number of queues, the number may vary depending on the system configuration and workload in this case workload previously mentioned.
+
+## Many Slow Subscriber Simulation slow subscriber
++ Running 3 subscribers
+
+![alt text](image-1.png)
+![alt text](image-2.png)
+
++ After running `cargo run` on publisher around 10 times there was an initial spike in queue messages that quickly subdued.
++ We can conclude with he addition of more subscribers it contributes to mitigating the buildup of pending messages within the message queue. Basically, when there are multiple subscribers in action, they operate concurrently to handle incoming messages.
++ This concurrent processing allows for a more efficient distribution of workload across the subscriber nodes.It also accelerates the overall responsiveness of the system to incoming message streams. With a higher number of subscribers actively participating in message processing, the system can better keep pace with the rate at which messages are delivered by the publisher. 
